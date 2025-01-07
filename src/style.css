@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-bg: #4d82dc;
+  --nav-bg: #4d82dc;
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.router-link-active {
+  @apply text-white;
+}
