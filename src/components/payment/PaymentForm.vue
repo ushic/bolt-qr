@@ -218,7 +218,11 @@ const selectCard = (card) => {
   selectedCard.value = card
   showNewCardForm.value = false
   // Reset form since we're using a saved card
-  form.value = { cardNumber: '', cardholderName: '', expiry: '', cvv: '' }
+  form.value = { 
+		cardNumber: maskCardNumber(card.cardNumber), 
+		cardholderName: '', 
+		expiry: '', 
+		cvv: '' }
 }
 
 const deleteCard = (id) => {

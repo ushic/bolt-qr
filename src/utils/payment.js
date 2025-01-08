@@ -58,11 +58,11 @@ export function getCurrentTime() {
  */
 export function maskCardNumber(cardNumber) {
   const cleaned = cardNumber.replace(/\D/g, '')
-  if (cleaned.length < 10) return cleaned // Return as is if too short
+  //if (cleaned.length < 10) return cleaned // Return as is if too short
   
   const first6 = cleaned.slice(0, 6)
   const last4 = cleaned.slice(-4)
-  const maskedLength = cleaned.length - 10
+  const maskedLength = 6//cleaned.length - 10
   if (maskedLength <= 0) return `${first6}${last4}`
   
   return `${first6}${'*'.repeat(maskedLength)}${last4}`
@@ -79,7 +79,8 @@ export function formatPaymentData({
   cardNumber
 }) {
   return [
-    serialNumber,
+		'txn',
+    //serialNumber,
     amount,
     getCurrentDate(),
     getCurrentTime(),

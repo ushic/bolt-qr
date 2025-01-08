@@ -5,7 +5,7 @@
  */
 export function maskCardNumber(cardNumber) {
   const cleaned = cardNumber.replace(/\D/g, '')
-  if (cleaned.length < 10) return cleaned
+  //if (cleaned.length < 10) return cleaned
   
   const first6 = cleaned.slice(0, 6)
   const last4 = cleaned.slice(-4)
