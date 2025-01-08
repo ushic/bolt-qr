@@ -7,18 +7,21 @@ export function parseQrData(data) {
   if (!data || typeof data !== 'string') return null
 
   const parts = data.split('|')
-  if (parts.length !== 7) return null
+  if (parts.length !== 8) return null
 
-  const [serialNumber, merchantNo, terminalNo, merchantName, amount, date, time ] = parts
+  const [serialNumber, terminalNo, merchantNo, merchantName, amount, date, time, end ] = parts
 
   // Validate amount is numeric
   if (!/^\d+$/.test(amount)) return null
 
+	// Extract first 8 digits of the date 
+	const date8Digits = date.slice(0, 8)
+	
   // Validate date format (MMDD)
   //if (!/^(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(date)) return null
 
 	// Validate date format (YYYYMMDD)
- if (!/^(14|15)\d\d(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(date)) return null;
+ if (!/^(14|15)\d\d(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(date8Digits)) return null;
 
 
   // Validate time format (HHMMSS)
@@ -26,11 +29,11 @@ export function parseQrData(data) {
 
   return {
     serialNumber,
-		merchantNo,
 		terminalNo,
+		merchantNo,
 		merchantName,
     amount: parseInt(amount),
-    date: formatDate(date),
+    date: formatDate(date8Digits),
     time: formatTime(time),
     raw: data
   }

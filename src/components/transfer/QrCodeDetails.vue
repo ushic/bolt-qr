@@ -177,7 +177,7 @@ const handlePaymentSuccess = async (cardData) => {
     await mqtt.publish(
       parsedData.value.serialNumber,
       paymentData,
-      2 // Use QoS 2 for payments
+      1 // Use QoS 1 for payments
     )
     
     setStatus('success', 'پرداخت با موفقیت انجام شد!')
